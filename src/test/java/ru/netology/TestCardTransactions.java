@@ -309,38 +309,6 @@ public class TestCardTransactions {
     }
 
     @Test
-    @DisplayName("Should successfully login, then attempt to transfer negative amount from the first card number. Expecting error popup")
-    public void shouldTryTransferFromFirstCardNegativeAmount() {
-        open("http://localhost:9999");
-
-        LoginPage lp =new LoginPage();
-        VerificationPage vp = lp.validLogin(_testUserInfo);
-        DashboardPage originalDashboard = vp.validVerify(_testUserInfo);
-
-        int transferAmount = -10; // :-)))
-
-        TransferPage tp = originalDashboard.transferToSecond();
-
-        ErrorPage errPopup = tp.doInvalidMoneyTransfer(Integer.toString(transferAmount), _testUserInfo.getFirstCardNumber());
-    }
-
-    @Test
-    @DisplayName("Should successfully login, then attempt to transfer negative amount from the second card number. Expecting error popup")
-    public void shouldTryTransferFromSecondCardNegativeAmount() {
-        open("http://localhost:9999");
-
-        LoginPage lp =new LoginPage();
-        VerificationPage vp = lp.validLogin(_testUserInfo);
-        DashboardPage originalDashboard = vp.validVerify(_testUserInfo);
-
-        int transferAmount = -10; // :-)))
-
-        TransferPage tp = originalDashboard.transferToFirst();
-
-        ErrorPage errPopup = tp.doInvalidMoneyTransfer(Integer.toString(transferAmount), _testUserInfo.getSecondCardNumber());
-    }
-
-    @Test
     @DisplayName("Should successfully login, then attempt to transfer too much from the First to Second card. Expecting error popup")
     public void shouldTryTransferFromFirstToSecondOverdraft() {
         open("http://localhost:9999");
